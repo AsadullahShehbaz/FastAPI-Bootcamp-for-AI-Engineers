@@ -1,0 +1,52 @@
+{
+  "P001": {
+    "name": "Maryam",
+    "city": "GRW",
+    "age": 28,
+    "gender": "Female",
+    "height": 1.65,
+    "weight": 90.0,
+    "bmi": 33.06,
+    "verdict": "Obese"
+  },
+  "P002": {
+    "name": "Ayan Ahmed",
+    "city": "LHR",
+    "age": 35,
+    "gender": "male",
+    "height": 1.75,
+    "weight": 85,
+    "bmi": 27.76,
+    "verdict": "Overweight"
+  },
+  "P003": {
+    "name": "Qasim Ali",
+    "city": "ISL",
+    "age": 22,
+    "gender": "Male",
+    "height": 1.6,
+    "weight": 45,
+    "bmi": 17.58,
+    "verdict": "Underweight"
+  },
+  "P004": {
+    "name": "Awais Ahmed",
+    "city": "FSD",
+    "age": 40,
+    "gender": "male",
+    "height": 1.8,
+    "weight": 95,
+    "bmi": 29.32,
+    "verdict": "Overweight"
+  },
+  "P005": {
+    "name": "Fatima",
+    "city": "KHI",
+    "age": 30,
+    "gender": "female",
+    "height": 1.55,
+    "weight": 75,
+    "bmi": 31.22,
+    "verdict": "Obese"
+  }
+}
