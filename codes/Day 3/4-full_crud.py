@@ -61,6 +61,37 @@ def create_user(user:UserCreate,db:Session = Depends(get_db)):
       return db_user
 
 
-@app.get("/read",response_model=UserResponse)
-def read_user(db:Session = Depends(get_db)):
-      return db.query(User).all()
+@app.get("/read",response_model=List[UserResponse])
+def read_user(skip:int = 0 , limit:int=5 , db:Session = Depends(get_db)):
+      return db.query(User).offset(skip).limit(limit).all()
+
+@app.get('/read/{user_id}',response_model=UserResponse)
+def read_user(user_id:int,db:Session = Depends(get_db)):
+      user = db.query(User).filter(User.id == user_id).first()
+      if not user:
+            raise HTTPException(status_code=404,detail='User not found')
+      return user
+
+@app.put("/update/{user_id}", response_model=UserResponse)
+def update_user(user_id: int, user_in: UserUpdate, db: Session = Depends(get_db)):
+      user = db.query(User).filter(User.id == user_id).first()
+      if not user:
+            raise HTTPException(status_code=404,detail='User not Found')
+      if user_in.name is not None:
+            user.name = user_in.name
+      if user_in.email is not None:
+            if db.query(User).filter(User.email == user_in.email).first():
+                  raise HTTPException(status_code=404,detail='Email already in use')
+            user.email = user_in.email
+      db.commit()
+      db.refresh(user)
+      return user
+
+@app.delete('/delete/{user_id}')
+def delete_user(user_id : int , db:Session = Depends(get_db)):
+      user = db.query(User).filter(User.id == user_id).first()
+      if not user:
+            raise HTTPException(status_code=404,detail='User not found')
+      db.delete(user)
+      db.commit()
+      return user 
