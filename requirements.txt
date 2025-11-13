@@ -1,0 +1,29 @@
+# ---------- Core Framework ----------
+fastapi==0.115.0
+uvicorn==0.30.6
+streamlit==1.40.0
+
+# ---------- Database & ORM ----------
+sqlalchemy==2.0.34
+sqlite-utils==3.36
+
+# ---------- LLM & LangGraph Ecosystem ----------
+langchain==0.3.3
+langchain-core==0.3.10
+langchain-openai==0.3.1
+langgraph==0.1.7
+langsmith==0.1.93
+python-dotenv==1.0.1
+pydantic==2.9.2
+
+# ---------- Tools & Utilities ----------
+requests==2.32.3
+duckduckgo-search==6.2.12
+youtube-transcript-api==0.6.2
+
+# ---------- Security ----------
+passlib[argon2]==1.7.4   # ✅ switched from bcrypt → argon2
+argon2-cffi==25.1.0      # ensures proper backend
+
+# ---------- Optional (for hashing or testing) ----------
+pytest==8.3.3
