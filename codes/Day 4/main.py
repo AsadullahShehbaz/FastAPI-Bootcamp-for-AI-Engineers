@@ -1,11 +1,12 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException , Request 
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from database import engine, Base, get_db, Session
 import models 
-from models import User, UserCreate, UserResponse, UserUpdate, LoginIn
+from models import User
+from schemas import UserCreate, UserResponse, UserUpdate, LoginIn
 from auth_hashing import get_password_hash, verify_password
-import logging
-
-logger = logging.getLogger(__name__)
+from logging_config import logger 
 
 # Define App 
 app = FastAPI()
@@ -109,3 +110,17 @@ async def login(data: LoginIn, db: Session = Depends(get_db)):
         "name": user.name,
         "email": user.email,
     }
+
+
+# Custom Validation Error Handler 
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    logger.error(f"Validation error for request : {request.url.path}, exception {exc}")
+    return JSONResponse(
+        status_code=422,
+        content= {
+            "error":"validation_error",
+            "detail":exc.errors(),
+            "body":exc.body,
+        },
+    )

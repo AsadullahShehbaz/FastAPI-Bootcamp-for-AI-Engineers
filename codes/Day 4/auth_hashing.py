@@ -1,7 +1,7 @@
-import logging
 from passlib.context import CryptContext
 
-logger = logging.getLogger(__name__)
+from logging_config import logger 
+
 
 # 🔒 Switch to Argon2 (modern & recommended)
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")

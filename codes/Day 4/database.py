@@ -1,8 +1,8 @@
-import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 
-logger = logging.getLogger(__name__)
+from logging_config import logger 
+
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./users.db"
 
