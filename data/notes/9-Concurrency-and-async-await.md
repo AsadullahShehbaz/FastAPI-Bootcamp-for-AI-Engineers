@@ -199,3 +199,6 @@ def simple():  # Just use def
 **"Use `async def` + `await` when calling AI APIs (OpenAI, LangChain), use regular `def` for everything else - FastAPI does the magic!"**
 
 Now go build those AI apps! 🚀# FastAPI Async/Await - Quick Notes for AI Engineers 🚀
+
+
+
